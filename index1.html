@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Моя сторінка</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li><a href="#task1">Знайти суму і добуток цифр числа, що вводиться</a></li>
+				<li><a href="#task2">Перевірити повторення чисел</a></li>
+				<li><a href="#task3">Обчислити кількість введених слів у тексті</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<section id="task1">
+			<h2>Знайти суму і добуток цифр числа, що вводиться:</h2>
+			<label for="number">Введіть число:</label>
+			<input type="number" id="number">
+			<button onclick="calculate()">Розрахувати</button>
+			<p id="result"></p>
+			<script>
+				function calculate() {
+					let number = document.getElementById('number').value;
+					let sum = 0;
+					let product = 1;
+					for (let digit of number) {
+						if (!isNaN(digit)) {
+							sum += parseInt(digit);
+							product *= parseInt(digit);
+						}
+					}
+					document.getElementById('result').innerHTML = `Сума цифр: ${sum}. Добуток цифр: ${product}.`;
+				}
+			</script>
+		</section>
+
+		<section id="task2">
+			<h2>Перевірити повторення чисел:</h2>
+			<label for="numbers">Введіть набір чисел через кому:</label>
+			<input type="text" id="numbers">
+			<button onclick="check()">Перевірити</button>
+			<p id="duplicate"></p>
+			<script>
+				function check() {
+					let numbers = document.getElementById('numbers').value.split(',');
+					let set = new Set(numbers);
+					if (set.size === numbers.length) {
+						document.getElementById('duplicate').innerHTML = "Немає повторень чисел.";
+					} else {
+						document.getElementById('duplicate').innerHTML = "Є повторення чисел.";
+					}
+				}
+			</script>
+		</section>
+
+		<section id="task3">
+			<h2>Обчислити кількість введених слів у тексті:</h2>
+			<label for="text">Введіть текст:</label>
+			<textarea id="text"></textarea>
+			<button onclick="count()">Розрахувати</button>
+			<p id="wordCount"></p>
+			<script>
+				function count() {
+					let text = document.getElementById('text').value;
+					let words = text.split(/\s+/);
+					document.getElementById('wordCount').innerHTML = `Кількість слів: ${words.length}.`;
+				}
+			</script>
+		</section>
+	</main>
+</body>
+</html>
